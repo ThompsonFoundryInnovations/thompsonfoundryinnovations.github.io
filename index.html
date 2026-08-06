@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thompson Foundry | Independent Research & Venture Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --text: #e0e0e0;
+            --accent: #f26419; /* Foundry Orange */
+            --accent-dim: #9b3d00;
+            --surface: #1a1a1a;
+            --surface-light: #2d2d2d;
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--surface-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--accent);
+            font-family: var(--mono);
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        nav a:hover { color: var(--accent); }
+
+        /* --- Hero --- */
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #aaa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--accent-dim);
+            color: #fff;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-family: var(--mono);
+        }
+
+        /* --- Section Styling --- */
+        section { display: none; padding: 2rem 0; }
+        section.active { display: block; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .section-header h2 { font-size: 2.5rem; letter-spacing: -1px; }
+
+        /* --- Smelting Logs Grid --- */
+        .logs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .log-card {
+            background: var(--surface);
+            border: 1px solid var(--surface-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .log-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .log-date {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .log-card h3 { margin-bottom: 1rem; font-size: 1.25rem; }
+
+        .log-preview {
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn::after {
+            content: '';
+            border-style: solid;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent #fff;
+            margin-left: 4px;
+        }
+
+        /* --- Portfolio/Venture Cards --- */
+        .identity-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 6rem;
+        }
+
+        .identity-card {
+            padding: 2.5rem;
+            background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+            border: 1px solid var(--surface-light);
+            border-radius: 16px;
+        }
+
+        .identity-card h3 { font-size: 1.75rem; margin-bottom: 1rem; color: var(--accent); }
+        .identity-card ul { list-style: none; margin-top: 1.5rem; }
+        .identity-card li { margin-bottom: 0.8rem; font-size: 0.95rem; color: #ccc; }
+        .identity-card li::before { content: '→'; color: var(--accent); margin-right: 0.5rem; font-family: var(--mono); }
+
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--surface-light);
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* --- Modal --- */
+        #logModal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+
+        .btn:hover { opacity: 0.9; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo" onclick="showSection('home')" style="cursor:pointer">THOMPSON_FOUNDRY</div>
+        <nav>
+            <a onclick="showSection('research')">Research</a>
+            <a onclick="showSection('ventures')">Ventures</a>
+            <a onclick="showSection('logs')">Logs</a>
+            <a class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="showSection('contact')">Contact</a>
+        </nav>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="active">
+        <div class="hero">
+            <div class="badge">In Formation</div>
+            <h1>Forging the Future of Creative Technology</h1>
+            <p>An independent digital research laboratory and venture studio where raw systems problems become practical, decentralized technology.</p>
+            <a class="btn" onclick="showSection('logs')">Explore the Smelting Logs</a>
+        </div>
+
+        <div class="identity-grid">
+            <div class="identity-card">
+                <h3>Research Org</h3>
+                <p>Theoretical frameworks and semantic data exploration.</p>
+                <ul>
+                    <li>Information Binding Model (v1.0)</li>
+                    <li>The Living Metric</li>
+                    <li>Dual-Path AI Architectures</li>
+                </ul>
+            </div>
+            <div class="identity-card">
+                <h3>Venture Studio</h3>
+                <p>Practical commercialization of infrastructure gaps.</p>
+                <ul>
+                    <li>MainStreet Local (Alpha Pilot)</li>
+                    <li>VetBridge Co-ordination Model</li>
+                    <li>Digital Analysis Services</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH SECTION -->
+    <section id="research">
+        <div class="section-header">
+            <div>
+                <p class="log-date" style="margin-bottom: 0;">Archive</p>
+                <h2>Theory & Frameworks</h2>
+            </div>
+        </div>
+        <div class="identity-card" style="margin-bottom: 2rem;">
+            <h3>Information Binding Model (IBM)</h3>
+            <p>A manuscript exploring the fundamental relationships between disparate data points and emergent intelligence.</p>
+            <p style="margin-top: 1rem; color: #888;">Status: Smelting v1.0</p>
+        </div>
+        <div class="identity-card">
+            <h3>Silicon Amygdala</h3>
+            <p>Hardware-level emotional interrupt architecture using event-based sensors and spiking neural networks.</p>
+            <p style="margin-top: 1rem; color: #888;">Status: Conceptual Patent Framework</p>
+        </div>
+    </section>
+
+    <!-- VENTURES SECTION -->
+    <section id="ventures">
+        <div class="section-header">
+            <div>
+                <p class="log-date" style="margin-bottom: 0;">Active Development</p>
+                <h2>Infrastructure Pilots</h2>
+            </div>
+        </div>
+        <div class="identity-card" style="margin-bottom: 2rem;">
+            <h3>MainStreet Local (MSL)</h3>
+            <p>Decentralized data infrastructure for the 'invisible shelf'—connecting local inventory to the digital economy.</p>
+            <p style="margin-top: 1rem; color: #888;">Status: Alpha Pilot (Fullerton, CA)</p>
+        </div>
+        <div class="identity-card">
+            <h3>Digital Analysis</h3>
+            <p>A systematic outreach and business analysis framework for identifying operational bottlenecks in small business.</p>
+            <p style="margin-top: 1rem; color: #888;">Status: Operational</p>
+        </div>
+    </section>
+
+    <!-- LOGS SECTION -->
+    <section id="logs">
+        <div class="section-header">
+            <div>
+                <p class="log-date" style="margin-bottom: 0;">Operational Feed</p>
+                <h2>The Smelting Logs</h2>
+            </div>
+            <p style="color: #666; max-width: 300px; text-align: right; font-size: 0.9rem;">
+                Daily raw video dispatches from the edge of innovation.
+            </p>
+        </div>
+
+        <div class="logs-grid" id="logsGrid">
+            <!-- Log 1 -->
+            <div class="log-card" onclick="openLog('August 6, 2026', 'Owning the ND Identity', 'Today I moved from internal planning to public forging. Recorded and posted the first Smelting Log to own my neurodivergent systems thinking.')">
+                <div class="log-date">AUG 06, 2026</div>
+                <div class="log-preview"><div class="play-btn"></div></div>
+                <h3>Smelting: Communication & Public Forging</h3>
+                <p style="font-size: 0.9rem; color: #888;">Breaking the communication bottleneck through 'Unmasked' video logs.</p>
+            </div>
+
+            <!-- Log 2 -->
+            <div class="log-card" onclick="openLog('August 4, 2026', 'Downtown Fullerton Validation', 'Completed field research of 38 merchant entities. Validated the Invisible Shelf problem as a data gap, not a marketing gap.')">
+                <div class="log-date">AUG 04, 2026</div>
+                <div class="log-preview"><div class="play-btn"></div></div>
+                <h3>Forging: MSL Market Analysis</h3>
+                <p style="font-size: 0.9rem; color: #888;">Validating digital infrastructure gaps across 38 merchant entities.</p>
+            </div>
+
+            <!-- Placeholder -->
+            <div class="log-card" style="opacity: 0.5; border-style: dashed;">
+                <div class="log-date">AUG 07, 2026</div>
+                <div class="log-preview" style="background: #111;"></div>
+                <h3>[Pending Dispatch]</h3>
+                <p style="font-size: 0.9rem; color: #555;">Next smelting session in progress...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="section-header">
+            <div>
+                <p class="log-date" style="margin-bottom: 0;">Collaborate</p>
+                <h2>Connect</h2>
+            </div>
+        </div>
+        <div class="identity-card">
+            <h3>Technical Partnerships</h3>
+            <p>I am currently seeking an elite engineering partner proficient in PostgreSQL/FastAPI who values deep-tech hardware-software integration.</p>
+            <div style="margin-top: 2rem;">
+                <a href="mailto:steventhompson.ne@gmail.com" class="btn">Email Thompson Foundry</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 THOMPSON FOUNDRY | INDEPENDENT DIGITAL RESEARCH | FULLERTON, CA
+    </footer>
+</div>
+
+<!-- Modal -->
+<div id="logModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeLog()">&times;</span>
+        <div id="modalDate" class="log-date"></div>
+        <h2 id="modalTitle" style="margin-bottom: 1rem;"></h2>
+        <div class="log-preview" style="aspect-ratio: 9/16; width: 250px; margin: 0 auto 2rem;">
+            <p style="color: #666; font-size: 0.8rem; text-align: center; padding: 1rem;">Video stream integration placeholder</p>
+        </div>
+        <p id="modalBody"></p>
+        <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <a class="btn" style="background: #333;">View on TikTok</a>
+            <a class="btn" style="background: #333;">Share Transcript</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('section');
+        sections.forEach(s => s.classList.remove('active'));
+        
+        // Show target section
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo(0,0);
+    }
+
+    function openLog(date, title, body) {
+        document.getElementById('modalDate').innerText = date;
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalBody').innerText = body;
+        document.getElementById('logModal').style.display = 'flex';
+    }
+
+    function closeLog() {
+        document.getElementById('logModal').style.display = 'none';
+    }
+
+    // Close on click outside
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('logModal')) {
+            closeLog();
+        }
+    }
+</script>
+
+</body>
+</html>

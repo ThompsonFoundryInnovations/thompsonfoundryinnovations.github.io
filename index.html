@@ -1,438 +1,637 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thompson Foundry | Independent Research & Venture Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0d0d0d;
-            --text: #e0e0e0;
-            --accent: #f26419; /* Foundry Orange */
-            --accent-dim: #9b3d00;
-            --surface: #1a1a1a;
-            --surface-light: #2d2d2d;
-            --mono: 'JetBrains Mono', monospace;
-            --sans: 'Space Grotesk', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thompson Foundry | Independent Research & Venture Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+:root {
+    --bg: #0d0d0d;
+    --text: #e0e0e0;
+    --accent: #f26419;
+    --accent-dim: #9b3d00;
+    --surface: #1a1a1a;
+    --surface-light: #2d2d2d;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+}
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--sans);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-        header {
-            padding: 2rem 0;
-            border-bottom: 1px solid var(--surface-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: var(--accent);
-            font-family: var(--mono);
-        }
+header {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--surface-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--accent);
+    font-family: var(--mono);
+}
 
-        nav a:hover { color: var(--accent); }
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    cursor: pointer;
+}
 
-        .hero {
-            padding: 6rem 0;
-            text-align: center;
-        }
+nav a:hover { color: var(--accent); }
 
-        .hero h1 {
-            font-size: 4rem;
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
+.hero {
+    padding: 6rem 0;
+    text-align: center;
+}
 
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            color: #aaa;
-        }
+.hero h1 {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+}
 
-        .badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: var(--accent-dim);
-            color: #fff;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            font-family: var(--mono);
-        }
+.hero p {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    color: #aaa;
+}
 
-        section { display: none; padding: 2rem 0; }
-        section.active { display: block; }
+.badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: var(--accent-dim);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-family: var(--mono);
+}
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 3rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 1.5rem;
-        }
+section { display: none; padding: 2rem 0; }
+section.active { display: block; }
 
-        .section-header h2 { font-size: 2.5rem; letter-spacing: -1px; }
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    border-left: 4px solid var(--accent);
+    padding-left: 1.5rem;
+}
 
-        .logs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 6rem;
-        }
+.section-header h2 { font-size: 2.5rem; letter-spacing: -1px; }
 
-        .log-card {
-            background: var(--surface);
-            border: 1px solid var(--surface-light);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: transform 0.2s, border-color 0.2s;
-            cursor: pointer;
-        }
+.logs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 6rem;
+}
 
-        .log-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
+.log-card {
+    background: var(--surface);
+    border: 1px solid var(--surface-light);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
 
-        .log-date {
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
+.log-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
 
-        .log-card h3 { margin-bottom: 1rem; font-size: 1.25rem; }
+.log-date {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
 
-        .log-preview {
-            aspect-ratio: 16/9;
-            background: #000;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
+.log-card h3 { margin-bottom: 1rem; font-size: 1.25rem; }
 
-        .play-btn {
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-        }
+.log-preview {
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        .play-btn::after {
-            content: '';
-            border-style: solid;
-            border-width: 10px 0 10px 15px;
-            border-color: transparent transparent transparent #fff;
-            margin-left: 4px;
-        }
+.play-btn {
+    width: 50px;
+    height: 50px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
 
-        .identity-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 6rem;
-        }
+.play-btn::after {
+    content: '';
+    border-style: solid;
+    border-width: 10px 0 10px 15px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 4px;
+}
 
-        .identity-card {
-            padding: 2.5rem;
-            background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
-            border: 1px solid var(--surface-light);
-            border-radius: 16px;
-        }
+.identity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 6rem;
+}
 
-        .identity-card h3 { font-size: 1.75rem; margin-bottom: 1rem; color: var(--accent); }
-        .identity-card ul { list-style: none; margin-top: 1.5rem; }
-        .identity-card li { margin-bottom: 0.8rem; font-size: 0.95rem; color: #ccc; }
-        .identity-card li::before { content: '→'; color: var(--accent); margin-right: 0.5rem; font-family: var(--mono); }
+.identity-card {
+    padding: 2.5rem;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+    border: 1px solid var(--surface-light);
+    border-radius: 16px;
+}
 
-        footer {
-            padding: 4rem 0;
-            text-align: center;
-            border-top: 1px solid var(--surface-light);
-            font-family: var(--mono);
-            font-size: 0.8rem;
-            color: #666;
-        }
+.identity-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
 
-        #logModal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
+.identity-card ul {
+    list-style: none;
+    margin-top: 1.5rem;
+}
 
-        .modal-content {
-            background: var(--surface);
-            padding: 2rem;
-            border-radius: 16px;
-            max-width: 800px;
-            width: 90%;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
+.identity-card li {
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    color: #ccc;
+}
 
-        .close-modal {
-            position: absolute;
-            top: 1rem; right: 1rem;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
+.identity-card li::before {
+    content: '→';
+    color: var(--accent);
+    margin-right: 0.5rem;
+    font-family: var(--mono);
+}
 
-        .video-container {
-            position: relative;
-            padding-bottom: 177.77%; /* 9:16 aspect ratio for shorts */
-            height: 0;
-            overflow: hidden;
-            max-width: 350px;
-            margin: 0 auto 2rem;
-            border-radius: 12px;
-            background: #000;
-        }
+footer {
+    padding: 4rem 0;
+    text-align: center;
+    border-top: 1px solid var(--surface-light);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: #666;
+}
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+#logModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
 
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--accent);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: opacity 0.2s;
-            cursor: pointer;
-            border: none;
-        }
+.modal-content {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
 
-        .btn:hover { opacity: 0.9; }
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
 
-    </style>
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto 2rem;
+    border-radius: 12px;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    background: #000;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover { opacity: 0.9; }
+
+@media (max-width: 700px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    nav a {
+        margin-left: 0;
+    }
+
+    .hero h1 {
+        font-size: 2.75rem;
+    }
+
+    .identity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        align-items: flex-start;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
+    .section-header > p {
+        text-align: left !important;
+    }
+}
+</style>
+
 </head>
+
 <body>
 
 <div class="container">
-    <header>
-        <div class="logo" onclick="showSection('home')" style="cursor:pointer">THOMPSON_FOUNDRY</div>
-        <nav>
-            <a onclick="showSection('research')">Research</a>
-            <a onclick="showSection('ventures')">Ventures</a>
-            <a onclick="showSection('logs')">Logs</a>
-            <a class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="showSection('contact')">Contact</a>
-        </nav>
-    </header>
 
-    <section id="home" class="active">
-        <div class="hero">
-            <div class="badge">In Formation</div>
-            <h1>Forging the Future of Creative Technology</h1>
-            <p>I am building <strong>MainStreet Local</strong>: A decentralized data infrastructure designed to solve the "Invisible Shelf" problem—making billions in local inventory machine-readable and discoverable without merchant friction.</p>
-            <a class="btn" onclick="showSection('logs')">Explore the Smelting Logs</a>
-        </div>
+<header>
+    <div class="logo" onclick="showSection('home')" style="cursor:pointer">THOMPSON_FOUNDRY</div>
 
-        <div class="identity-grid">
-            <div class="identity-card">
-                <h3>Research Org</h3>
-                <p>Theoretical frameworks and semantic data exploration.</p>
-                <ul>
-                    <li>Information Binding Model (v1.0)</li>
-                    <li>The Living Metric</li>
-                    <li>Dual-Path AI Architectures</li>
-                </ul>
-            </div>
-            <div class="identity-card">
-                <h3>Venture Studio</h3>
-                <p>Practical commercialization of infrastructure gaps.</p>
-                <ul>
-                    <li>MainStreet Local (Alpha Pilot)</li>
-                    <li>VetBridge Co-ordination Model</li>
-                    <li>Digital Analysis Services</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+```
+<nav>
+    <a onclick="showSection('research')">Research</a>
+    <a onclick="showSection('ventures')">Ventures</a>
+    <a onclick="showSection('logs')">Logs</a>
+    <a class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="showSection('contact')">Contact</a>
+</nav>
+```
 
-    <section id="research">
-        <div class="section-header">
-            <div>
-                <p class="log-date" style="margin-bottom: 0;">Archive</p>
-                <h2>Theory & Frameworks</h2>
-            </div>
-        </div>
-        <div class="identity-card" style="margin-bottom: 2rem;">
-            <h3>Information Binding Model (IBM)</h3>
-            <p>A manuscript exploring the fundamental relationships between disparate data points and emergent intelligence.</p>
-            <p style="margin-top: 1rem; color: #888;">Status: Smelting v1.0</p>
-        </div>
-        <div class="identity-card" style="margin-bottom: 2rem;">
-            <h3>Silicon Amygdala</h3>
-            <p>Hardware-level emotional interrupt architecture using event-based sensors and spiking neural networks.</p>
-            <p style="margin-top: 1rem; color: #888;">Status: Conceptual Patent Framework</p>
-        </div>
-    </section>
+</header>
 
-    <section id="ventures">
-        <div class="section-header">
-            <div>
-                <p class="log-date" style="margin-bottom: 0;">Active Development</p>
-                <h2>Infrastructure Pilots</h2>
-            </div>
-        </div>
-        <div class="identity-card" style="margin-bottom: 2rem;">
-            <h3>MainStreet Local (MSL)</h3>
-            <p>Decentralized data infrastructure for the 'invisible shelf'—connecting local inventory to the digital economy.</p>
-            <p style="margin-top: 1rem; color: #888;">Status: Alpha Pilot (Fullerton, CA)</p>
-        </div>
-        <div class="identity-card">
-            <h3>VetBridge</h3>
-            <p>A coordination model designed to replace fragmented veteran referral chains with an event-driven orchestration system.</p>
-            <p style="margin-top: 1rem; color: #888;">Status: Simulation Model v0</p>
-        </div>
-    </section>
+<section id="home" class="active">
+    <div class="hero">
+        <div class="badge">In Formation</div>
 
-    <section id="logs">
-        <div class="section-header">
-            <div>
-                <p class="log-date" style="margin-bottom: 0;">Operational Feed</p>
-                <h2>The Smelting Logs</h2>
-            </div>
-            <p style="color: #666; max-width: 300px; text-align: right; font-size: 0.9rem;">
-                Daily raw video dispatches from the edge of innovation.
-            </p>
-        </div>
+```
+    <h1>Forging the Future of Creative Technology</h1>
 
-        <div class="logs-grid" id="logsGrid">
-            <!-- Log Day 2 -->
-            <div class="log-card" onclick="openLog('August 7, 2026', 'Day Two: The Communication Barrier', 'One small lesson from yesterday: &quot;It looks nice... but what is it?&quot; Clarity is the priority today.', 'https://www.youtube.com/embed/-9y1mXyLJd4')">
-                <div class="log-date">AUG 07, 2026</div>
-                <div class="log-preview"><div class="play-btn"></div></div>
-                <h3>Day Two: Clarity Pivot</h3>
-                <p style="font-size: 0.9rem; color: #888;">Refining the mission after a first-day vibe check.</p>
-            </div>
+    <p>
+        I am building <strong>MainStreet Local</strong>: A decentralized data infrastructure designed to solve the "Invisible Shelf" problem—making billions in local inventory machine-readable and discoverable without merchant friction.
+    </p>
 
-            <!-- Log Day 0 -->
-            <div class="log-card" onclick="openLog('August 6, 2026', 'Day Zero: Stepping Out', 'Overcoming low self-esteem to document the journey of the builder.', 'https://www.youtube.com/embed/xhlZOuY92hY')">
-                <div class="log-date">AUG 06, 2026</div>
-                <div class="log-preview"><div class="play-btn"></div></div>
-                <h3>Day Zero: Launch</h3>
-                <p style="font-size: 0.9rem; color: #888;">Owning the ND identity and launching build-in-public.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="section-header">
-            <div>
-                <p class="log-date" style="margin-bottom: 0;">Collaborate</p>
-                <h2>Connect</h2>
-            </div>
-        </div>
-        <div class="identity-card">
-            <h3>Technical Partnerships</h3>
-            <p>Seeking engineering partners for deep-tech hardware-software integration.</p>
-            <div style="margin-top: 2rem;">
-                <a href="mailto:steventhompson.ne@gmail.com" class="btn">Email Thompson Foundry</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        &copy; 2026 THOMPSON FOUNDRY | FULLERTON, CA
-    </footer>
+    <a class="btn" onclick="showSection('logs')">Explore the Smelting Logs</a>
 </div>
 
-<!-- Modal -->
-<div id="logModal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeLog()">&times;</span>
-        <div id="modalDate" class="log-date"></div>
-        <h2 id="modalTitle" style="margin-bottom: 1rem;"></h2>
-        <div class="video-container">
-            <iframe id="modalVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <p id="modalBody" style="margin-bottom: 2rem;"></p>
-        <div style="text-align: center;">
-            <a class="btn" style="background: #333;" onclick="closeLog()">Back to Feed</a>
-        </div>
+<div class="identity-grid">
+
+    <div class="identity-card">
+        <h3>Research Org</h3>
+        <p>Theoretical frameworks and semantic data exploration.</p>
+
+        <ul>
+            <li>Information Binding Model (v1.0)</li>
+            <li>The Living Metric</li>
+            <li>Dual-Path AI Architectures</li>
+        </ul>
+    </div>
+
+    <div class="identity-card">
+        <h3>Venture Studio</h3>
+        <p>Practical commercialization of infrastructure gaps.</p>
+
+        <ul>
+            <li>MainStreet Local (Alpha Pilot)</li>
+            <li>VetBridge Co-ordination Model</li>
+            <li>Digital Analysis Services</li>
+        </ul>
+    </div>
+
+</div>
+```
+
+</section>
+
+<section id="research">
+
+```
+<div class="section-header">
+    <div>
+        <p class="log-date" style="margin-bottom: 0;">Archive</p>
+        <h2>Theory & Frameworks</h2>
     </div>
 </div>
 
+<div class="identity-card" style="margin-bottom: 2rem;">
+    <h3>Information Binding Model (IBM)</h3>
+    <p>A manuscript exploring the fundamental relationships between disparate data points and emergent intelligence.</p>
+    <p style="margin-top: 1rem; color: #888;">Status: Smelting v1.0</p>
+</div>
+
+<div class="identity-card" style="margin-bottom: 2rem;">
+    <h3>Silicon Amygdala</h3>
+    <p>Hardware-level emotional interrupt architecture using event-based sensors and spiking neural networks.</p>
+    <p style="margin-top: 1rem; color: #888;">Status: Conceptual Patent Framework</p>
+</div>
+```
+
+</section>
+
+<section id="ventures">
+
+```
+<div class="section-header">
+    <div>
+        <p class="log-date" style="margin-bottom: 0;">Active Development</p>
+        <h2>Infrastructure Pilots</h2>
+    </div>
+</div>
+
+<div class="identity-card" style="margin-bottom: 2rem;">
+    <h3>MainStreet Local (MSL)</h3>
+    <p>Decentralized data infrastructure for the 'invisible shelf'—connecting local inventory to the digital economy.</p>
+    <p style="margin-top: 1rem; color: #888;">Status: Alpha Pilot (Fullerton, CA)</p>
+</div>
+
+<div class="identity-card">
+    <h3>VetBridge</h3>
+    <p>A coordination model designed to replace fragmented veteran referral chains with an event-driven orchestration system.</p>
+    <p style="margin-top: 1rem; color: #888;">Status: Simulation Model v0</p>
+</div>
+```
+
+</section>
+
+<section id="logs">
+
+```
+<div class="section-header">
+    <div>
+        <p class="log-date" style="margin-bottom: 0;">Operational Feed</p>
+        <h2>The Smelting Logs</h2>
+    </div>
+
+    <p style="color: #666; max-width: 300px; text-align: right; font-size: 0.9rem;">
+        Daily raw video dispatches from the edge of innovation.
+    </p>
+</div>
+
+<div class="logs-grid" id="logsGrid">
+
+    <!-- Log Day 2 -->
+    <div class="log-card"
+         onclick="openLog(
+            'August 7, 2026',
+            'Day Two: The Communication Barrier',
+            'One small lesson from yesterday: &quot;It looks nice... but what is it?&quot; Clarity is the priority today.',
+            'videos/Founder%20Log%20Day%20Two%20-%2002.mp4'
+         )">
+
+        <div class="log-date">AUG 07, 2026</div>
+
+        <div class="log-preview">
+            <div class="play-btn"></div>
+        </div>
+
+        <h3>Day Two: Clarity Pivot</h3>
+
+        <p style="font-size: 0.9rem; color: #888;">
+            Refining the mission after a first-day vibe check.
+        </p>
+
+    </div>
+
+    <!-- Log Day 0 -->
+    <div class="log-card"
+         onclick="openLog(
+            'August 6, 2026',
+            'Day Zero: Stepping Out',
+            'Overcoming low self-esteem to document the journey of the builder.',
+            'videos/Founder%20Log%20Day%20Zero%20-%2001.mp4'
+         )">
+
+        <div class="log-date">AUG 06, 2026</div>
+
+        <div class="log-preview">
+            <div class="play-btn"></div>
+        </div>
+
+        <h3>Day Zero: Launch</h3>
+
+        <p style="font-size: 0.9rem; color: #888;">
+            Owning the ND identity and launching build-in-public.
+        </p>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<section id="contact">
+
+```
+<div class="section-header">
+    <div>
+        <p class="log-date" style="margin-bottom: 0;">Collaborate</p>
+        <h2>Connect</h2>
+    </div>
+</div>
+
+<div class="identity-card">
+
+    <h3>Technical Partnerships</h3>
+
+    <p>
+        Seeking engineering partners for deep-tech hardware-software integration.
+    </p>
+
+    <div style="margin-top: 2rem;">
+        <a href="mailto:steventhompson.ne@gmail.com" class="btn">
+            Email Thompson Foundry
+        </a>
+    </div>
+
+</div>
+```
+
+</section>
+
+<footer>
+    &copy; 2026 THOMPSON FOUNDRY | FULLERTON, CA
+</footer>
+
+</div>
+
+<!-- Modal -->
+
+<div id="logModal">
+
+```
+<div class="modal-content">
+
+    <span class="close-modal" onclick="closeLog()">&times;</span>
+
+    <div id="modalDate" class="log-date"></div>
+
+    <h2 id="modalTitle" style="margin-bottom: 1rem;"></h2>
+
+    <div class="video-container">
+
+        <video
+            id="modalVideo"
+            controls
+            playsinline
+            preload="metadata">
+            Your browser does not support HTML5 video.
+        </video>
+
+    </div>
+
+    <p id="modalBody" style="margin-bottom: 2rem;"></p>
+
+    <div style="text-align: center;">
+        <a class="btn" style="background: #333;" onclick="closeLog()">
+            Back to Feed
+        </a>
+    </div>
+
+</div>
+```
+
+</div>
+
 <script>
-    function showSection(sectionId) {
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        document.getElementById(sectionId).classList.add('active');
-        window.scrollTo(0,0);
+
+function showSection(sectionId) {
+
+    document.querySelectorAll('section').forEach(s =>
+        s.classList.remove('active')
+    );
+
+    document.getElementById(sectionId).classList.add('active');
+
+    window.scrollTo(0,0);
+}
+
+
+function openLog(date, title, body, videoUrl) {
+
+    document.getElementById('modalDate').innerText = date;
+
+    document.getElementById('modalTitle').innerText = title;
+
+    document.getElementById('modalBody').innerText = body;
+
+    const video = document.getElementById('modalVideo');
+
+    video.src = videoUrl;
+
+    document.getElementById('logModal').style.display = 'flex';
+
+}
+
+
+function closeLog() {
+
+    const video = document.getElementById('modalVideo');
+
+    video.pause();
+
+    video.removeAttribute('src');
+
+    video.load();
+
+    document.getElementById('logModal').style.display = 'none';
+
+}
+
+
+window.onclick = function(event) {
+
+    if (event.target == document.getElementById('logModal')) {
+
+        closeLog();
+
     }
 
-    function openLog(date, title, body, videoUrl) {
-        document.getElementById('modalDate').innerText = date;
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalBody').innerText = body;
-        document.getElementById('modalVideo').src = videoUrl;
-        document.getElementById('logModal').style.display = 'flex';
-    }
+};
 
-    function closeLog() {
-        document.getElementById('logModal').style.display = 'none';
-        document.getElementById('modalVideo').src = ''; // Stop video
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('logModal')) {
-            closeLog();
-        }
-    }
 </script>
 
 </body>

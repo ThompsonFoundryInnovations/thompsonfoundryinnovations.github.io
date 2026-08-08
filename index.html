@@ -1,638 +1,290 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thompson Foundry | Independent Research & Venture Studio</title>
+<title>Thompson Foundry Innovations | Independent Innovation Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
 :root {
-    --bg: #0d0d0d;
-    --text: #e0e0e0;
-    --accent: #f26419;
-    --accent-dim: #9b3d00;
-    --surface: #1a1a1a;
-    --surface-light: #2d2d2d;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'Space Grotesk', sans-serif;
+  --bg: #0d0d0d;
+  --text: #e0e0e0;
+  --accent: #f26419; /* Foundry Orange */
+  --accent-dim: #9b3d00;
+  --surface: #1a1a1a;
+  --surface-light: #2d2d2d;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.6;
-    overflow-x: hidden;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 header {
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--surface-light);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--surface-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -1px;
-    color: var(--accent);
-    font-family: var(--mono);
-}
-
-nav a {
-    color: var(--text);
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s;
-    cursor: pointer;
-}
-
-nav a:hover { color: var(--accent); }
-
-.hero {
-    padding: 6rem 0;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 4rem;
-    line-height: 1;
-    margin-bottom: 1.5rem;
-    letter-spacing: -2px;
-}
-
-.hero p {
-    font-size: 1.25rem;
-    max-width: 800px;
-    margin: 0 auto 2rem;
-    color: #aaa;
-}
-
+.logo { font-size: 1.4rem; font-weight: 700; letter-spacing: -1px; color: var(--accent); font-family: var(--mono); text-decoration: none; }
+nav a { color: var(--text); text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; cursor: pointer; }
+nav a:hover, nav a.current { color: var(--accent); }
+.hero { padding: 5rem 0 4rem; text-align: center; }
+.hero h1 { font-size: 3.2rem; line-height: 1.05; margin-bottom: 1.25rem; letter-spacing: -1.5px; }
+.hero p { font-size: 1.15rem; max-width: 700px; margin: 0 auto 2rem; color: #aaa; }
 .badge {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    background: var(--accent-dim);
-    color: #fff;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    font-family: var(--mono);
+  display: inline-block; padding: 0.4rem 1rem; background: var(--accent-dim); color: #fff;
+  border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  margin-bottom: 1rem; font-family: var(--mono);
 }
-
 section { display: none; padding: 2rem 0; }
 section.active { display: block; }
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 3rem;
-    border-left: 4px solid var(--accent);
-    padding-left: 1.5rem;
-}
-
-.section-header h2 { font-size: 2.5rem; letter-spacing: -1px; }
-
-.logs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 6rem;
-}
-
-.log-card {
-    background: var(--surface);
-    border: 1px solid var(--surface-light);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: transform 0.2s, border-color 0.2s;
-    cursor: pointer;
-}
-
-.log-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--accent);
-}
-
-.log-date {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-}
-
+.section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; border-left: 4px solid var(--accent); padding-left: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+.section-header h2 { font-size: 2.25rem; letter-spacing: -1px; }
+.section-intro { max-width: 700px; color: #aaa; margin-bottom: 2.5rem; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+.logs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+.log-card { background: var(--surface); border: 1px solid var(--surface-light); border-radius: 12px; padding: 1.5rem; transition: transform 0.2s, border-color 0.2s; cursor: pointer; }
+.log-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+.log-date { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); margin-bottom: 0.5rem; }
 .log-card h3 { margin-bottom: 1rem; font-size: 1.25rem; }
-
-.log-preview {
-    aspect-ratio: 16/9;
-    background: #000;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.play-btn {
-    width: 50px;
-    height: 50px;
-    background: var(--accent);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
-}
-
-.play-btn::after {
-    content: '';
-    border-style: solid;
-    border-width: 10px 0 10px 15px;
-    border-color: transparent transparent transparent #fff;
-    margin-left: 4px;
-}
-
-.identity-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 6rem;
-}
-
-.identity-card {
-    padding: 2.5rem;
-    background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
-    border: 1px solid var(--surface-light);
-    border-radius: 16px;
-}
-
-.identity-card h3 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    color: var(--accent);
-}
-
-.identity-card ul {
-    list-style: none;
-    margin-top: 1.5rem;
-}
-
-.identity-card li {
-    margin-bottom: 0.8rem;
-    font-size: 0.95rem;
-    color: #ccc;
-}
-
-.identity-card li::before {
-    content: '→';
-    color: var(--accent);
-    margin-right: 0.5rem;
-    font-family: var(--mono);
-}
-
-footer {
-    padding: 4rem 0;
-    text-align: center;
-    border-top: 1px solid var(--surface-light);
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: #666;
-}
-
-#logModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-}
-
-.modal-content {
-    background: var(--surface);
-    padding: 2rem;
-    border-radius: 16px;
-    max-width: 800px;
-    width: 90%;
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-.close-modal {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
-    font-size: 1.5rem;
-}
-
-.video-container {
-    position: relative;
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto 2rem;
-    border-radius: 12px;
-    background: #000;
-    overflow: hidden;
-}
-
-.video-container video {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 75vh;
-    background: #000;
-}
-
-.btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 700;
-    transition: opacity 0.2s;
-    cursor: pointer;
-    border: none;
-}
-
+.log-preview { aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.play-btn { width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; }
+.play-btn::after { content: ''; border-style: solid; border-width: 10px 0 10px 15px; border-color: transparent transparent transparent #fff; margin-left: 4px; }
+.identity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+.identity-card { padding: 2rem; background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%); border: 1px solid var(--surface-light); border-radius: 16px; }
+.identity-card h3 { font-size: 1.5rem; margin-bottom: 0.75rem; color: var(--accent); }
+.identity-card ul { list-style: none; margin-top: 1.25rem; }
+.identity-card li { margin-bottom: 0.8rem; font-size: 0.95rem; color: #ccc; }
+.identity-card li::before { content: '→'; color: var(--accent); margin-right: 0.5rem; font-family: var(--mono); }
+.status-tag { display: inline-block; margin-top: 1rem; font-size: 0.75rem; font-family: var(--mono); color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+.link-out { display: inline-block; margin-top: 1rem; color: var(--accent); font-size: 0.9rem; font-weight: 700; text-decoration: none; }
+.link-out:hover { text-decoration: underline; }
+footer { padding: 3rem 0; text-align: center; border-top: 1px solid var(--surface-light); font-family: var(--mono); font-size: 0.8rem; color: #666; }
+#logModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 100; }
+.modal-content { background: var(--surface); padding: 2rem; border-radius: 16px; max-width: 800px; width: 90%; position: relative; max-height: 90vh; overflow-y: auto; }
+.close-modal { position: absolute; top: 1rem; right: 1rem; cursor: pointer; font-size: 1.5rem; }
+.video-container { position: relative; max-width: 350px; margin: 0 auto 2rem; border-radius: 12px; background: #000; overflow: hidden; }
+.video-container video { display: block; width: 100%; max-height: 70vh; border-radius: 12px; background: #000; }
+.btn { display: inline-block; padding: 0.8rem 1.5rem; background: var(--accent); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 700; transition: opacity 0.2s; cursor: pointer; border: none; }
 .btn:hover { opacity: 0.9; }
-
-@media (max-width: 700px) {
-    .container {
-        padding: 0 1rem;
-    }
-
-    header {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.75rem;
-    }
-
-    nav a {
-        margin-left: 0;
-    }
-
-    .hero h1 {
-        font-size: 2.75rem;
-    }
-
-    .identity-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section-header {
-        align-items: flex-start;
-        gap: 1rem;
-        flex-direction: column;
-    }
-
-    .section-header > p {
-        text-align: left !important;
-    }
+.btn-ghost { background: #333; }
+@media (max-width: 640px) {
+  .identity-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.2rem; }
 }
 </style>
-
 </head>
-
 <body>
-
 <div class="container">
+  <header>
+    <a class="logo" href="#home" onclick="showSection('home')">THOMPSON_FOUNDRY_INNOVATIONS</a>
+    <nav>
+      <a href="#home" onclick="showSection('home')">Home</a>
+      <a href="#about" onclick="showSection('about')">About</a>
+      <a href="#projects" onclick="showSection('projects')">Projects</a>
+      <a href="#research" onclick="showSection('research')">Research</a>
+      <a href="#founderslog" onclick="showSection('founderslog')">Founder's Log</a>
+      <a class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;" href="#contact" onclick="showSection('contact')">Contact</a>
+    </nav>
+  </header>
 
-<header>
-    <div class="logo" onclick="showSection('home')" style="cursor:pointer">THOMPSON_FOUNDRY</div>
-
-```
-<nav>
-    <a onclick="showSection('research')">Research</a>
-    <a onclick="showSection('ventures')">Ventures</a>
-    <a onclick="showSection('logs')">Logs</a>
-    <a class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="showSection('contact')">Contact</a>
-</nav>
-```
-
-</header>
-
-<section id="home" class="active">
+  <!-- HOME -->
+  <section id="home" class="active">
     <div class="hero">
-        <div class="badge">In Formation</div>
+      <div class="badge">In Formation</div>
+      <h1>Independent innovation for real-world problems.</h1>
+      <p>Thompson Foundry Innovations (TFI) develops ideas across technology, applied research, software, and intellectual property — turning promising concepts into working systems.</p>
+      <a class="btn" href="#projects" onclick="showSection('projects')">See What We're Building</a>
+    </div>
 
-```
-    <h1>Forging the Future of Creative Technology</h1>
+    <div class="section-header">
+      <div><h2 style="font-size:1.75rem;">Current Work</h2></div>
+    </div>
+    <div class="identity-grid">
+      <div class="identity-card">
+        <h3>MainStreet Local</h3>
+        <p>A civic commerce infrastructure initiative exploring how technology can make local inventory as discoverable and convenient as online shopping.</p>
+        <span class="status-tag">Alpha Pilot — Fullerton, CA</span><br>
+        <a class="link-out" href="#projects" onclick="showSection('projects')">Learn more →</a>
+      </div>
+      <div class="identity-card">
+        <h3>Neuromorphic Edge Sensor Research</h3>
+        <p>Patent-pending work on localized, event-based edge sensing with on-device signal processing and hardware-triggered data destruction.</p>
+        <span class="status-tag">USPTO Provisional Filed</span><br>
+        <a class="link-out" href="#projects" onclick="showSection('projects')">Learn more →</a>
+      </div>
+    </div>
 
-    <p>
-        I am building <strong>MainStreet Local</strong>: A decentralized data infrastructure designed to solve the "Invisible Shelf" problem—making billions in local inventory machine-readable and discoverable without merchant friction.
-    </p>
+    <div class="section-header">
+      <div><h2 style="font-size:1.75rem;">Founder's Log</h2></div>
+      <p style="color:#666; font-size: 0.9rem;">Building in public.</p>
+    </div>
+    <p class="section-intro">A chronological record of the ideas, experiments, decisions, and milestones behind the Foundry.</p>
+    <a class="link-out" href="#founderslog" onclick="showSection('founderslog')">Read the Founder's Log →</a>
+  </section>
 
-    <a class="btn" onclick="showSection('logs')">Explore the Smelting Logs</a>
-</div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-header">
+      <div><p class="log-date" style="margin-bottom:0;">The Foundry</p><h2>About TFI</h2></div>
+    </div>
+    <div class="identity-card" style="margin-bottom: 2rem;">
+      <h3>What is Thompson Foundry Innovations?</h3>
+      <p>TFI is an independent innovation and development entity focused on technology, applied research, software, inventions, and systems designed to address real-world problems. It is not a single product — it's the environment where ideas are researched, developed, documented, tested, and turned into products, systems, ventures, or intellectual property.</p>
+    </div>
+    <div class="identity-card" style="margin-bottom: 2rem;">
+      <h3>Why it exists</h3>
+      <p>TFI exists to explore and develop ideas that may not fit neatly into conventional categories but have real potential to solve meaningful problems — whether that's making local commerce more discoverable, rethinking how edge devices handle sensitive data, or documenting the process of building a company from the ground up in public.</p>
+    </div>
+    <div class="identity-card">
+      <h3>Founder</h3>
+      <p>Thompson Foundry Innovations is built by Steven Thompson, an independent entrepreneur and inventor based in Fullerton, CA, working across business analysis, AI research, and technical documentation. Steven is building TFI openly and neurodivergently — documenting the real process, not a polished corporate version of it.</p>
+    </div>
+  </section>
 
-<div class="identity-grid">
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header">
+      <div><p class="log-date" style="margin-bottom:0;">Active Development</p><h2>Projects</h2></div>
+    </div>
+    <p class="section-intro">TFI's current body of work. Some initiatives, like MainStreet Local, will eventually have their own dedicated consumer-facing sites — this page tracks what each one is and where it stands.</p>
+
+    <div class="identity-card" style="margin-bottom: 2rem;">
+      <h3>MainStreet Local (MSL)</h3>
+      <p>An initiative of Thompson Foundry Innovations. MSL is civic commerce infrastructure for the "invisible shelf" problem — the local merchant inventory that never surfaces in digital search because it's locked inside siloed point-of-sale systems.</p>
+      <p style="margin-top:1rem;">The consumer asks "where can I get this locally?" and MSL connects that demand to real merchant inventory — automatic ingestion, a Certified Local Map, and City Scoreboard gamification, with zero processing fees on a merchant's first $10K and a 5% commission on net-new marketplace sales.</p>
+      <span class="status-tag">Alpha Pilot — Fullerton, CA · Dedicated site coming</span>
+    </div>
+
+    <div class="identity-card" style="margin-bottom: 2rem;">
+      <h3>Neuromorphic Edge Sensor System</h3>
+      <p>A USPTO provisional patent for a localized, event-based edge sensor architecture. The system processes biological and physiological signals directly on-device using spiking neural network principles, rather than routing raw data to the cloud.</p>
+      <p style="margin-top:1rem;">A core feature is hardware-triggered data destruction — sensitive physiological data is irreversibly purged at the hardware level once processed, built for contexts where privacy-by-design and low-latency detection matter more than centralized collection.</p>
+      <span class="status-tag">USPTO Provisional Filed</span>
+    </div>
 
     <div class="identity-card">
-        <h3>Research Org</h3>
-        <p>Theoretical frameworks and semantic data exploration.</p>
-
-        <ul>
-            <li>Information Binding Model (v1.0)</li>
-            <li>The Living Metric</li>
-            <li>Dual-Path AI Architectures</li>
-        </ul>
+      <h3>VetBridge</h3>
+      <p>A coordination model designed to replace fragmented veteran referral chains with an event-driven orchestration system — routing a veteran's request to the right resource in real time instead of relying on manual handoffs between disconnected agencies.</p>
+      <span class="status-tag">Simulation Model v0</span>
     </div>
+  </section>
 
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="section-header">
+      <div><p class="log-date" style="margin-bottom:0;">Archive</p><h2>Research</h2></div>
+    </div>
+    <p class="section-intro">Theoretical frameworks, semantic data exploration, and intellectual property under development at TFI.</p>
+
+    <div class="identity-card" style="margin-bottom: 2rem;">
+      <h3>Information Binding Model (IBM)</h3>
+      <p>A manuscript exploring the fundamental relationships between disparate data points and emergent intelligence.</p>
+      <span class="status-tag">Smelting v1.0</span>
+    </div>
+    <div class="identity-card" style="margin-bottom: 2rem;">
+      <h3>The Living Metric</h3>
+      <p>A philosophical essay reimagining cosmic judgment through the lens of quantum panpsychism and non-religious ethics.</p>
+      <span class="status-tag">Complete</span>
+    </div>
     <div class="identity-card">
-        <h3>Venture Studio</h3>
-        <p>Practical commercialization of infrastructure gaps.</p>
+      <h3>Dual-Path AI Architectures</h3>
+      <p>Exploratory framework work on structuring AI systems around parallel reasoning paths.</p>
+      <span class="status-tag">Conceptual</span>
+    </div>
+  </section>
 
-        <ul>
-            <li>MainStreet Local (Alpha Pilot)</li>
-            <li>VetBridge Co-ordination Model</li>
-            <li>Digital Analysis Services</li>
-        </ul>
+  <!-- FOUNDER'S LOG -->
+  <section id="founderslog">
+    <div class="section-header">
+      <div><p class="log-date" style="margin-bottom:0;">Operational Feed</p><h2>The Smelting Logs</h2></div>
+      <p style="color:#666; max-width:300px; text-align:right; font-size:0.9rem;">Daily raw video dispatches from the edge of innovation.</p>
     </div>
 
-</div>
-```
-
-</section>
-
-<section id="research">
-
-```
-<div class="section-header">
-    <div>
-        <p class="log-date" style="margin-bottom: 0;">Archive</p>
-        <h2>Theory & Frameworks</h2>
-    </div>
-</div>
-
-<div class="identity-card" style="margin-bottom: 2rem;">
-    <h3>Information Binding Model (IBM)</h3>
-    <p>A manuscript exploring the fundamental relationships between disparate data points and emergent intelligence.</p>
-    <p style="margin-top: 1rem; color: #888;">Status: Smelting v1.0</p>
-</div>
-
-<div class="identity-card" style="margin-bottom: 2rem;">
-    <h3>Silicon Amygdala</h3>
-    <p>Hardware-level emotional interrupt architecture using event-based sensors and spiking neural networks.</p>
-    <p style="margin-top: 1rem; color: #888;">Status: Conceptual Patent Framework</p>
-</div>
-```
-
-</section>
-
-<section id="ventures">
-
-```
-<div class="section-header">
-    <div>
-        <p class="log-date" style="margin-bottom: 0;">Active Development</p>
-        <h2>Infrastructure Pilots</h2>
-    </div>
-</div>
-
-<div class="identity-card" style="margin-bottom: 2rem;">
-    <h3>MainStreet Local (MSL)</h3>
-    <p>Decentralized data infrastructure for the 'invisible shelf'—connecting local inventory to the digital economy.</p>
-    <p style="margin-top: 1rem; color: #888;">Status: Alpha Pilot (Fullerton, CA)</p>
-</div>
-
-<div class="identity-card">
-    <h3>VetBridge</h3>
-    <p>A coordination model designed to replace fragmented veteran referral chains with an event-driven orchestration system.</p>
-    <p style="margin-top: 1rem; color: #888;">Status: Simulation Model v0</p>
-</div>
-```
-
-</section>
-
-<section id="logs">
-
-```
-<div class="section-header">
-    <div>
-        <p class="log-date" style="margin-bottom: 0;">Operational Feed</p>
-        <h2>The Smelting Logs</h2>
-    </div>
-
-    <p style="color: #666; max-width: 300px; text-align: right; font-size: 0.9rem;">
-        Daily raw video dispatches from the edge of innovation.
-    </p>
-</div>
-
-<div class="logs-grid" id="logsGrid">
-
-    <!-- Log Day 2 -->
-    <div class="log-card"
-         onclick="openLog(
-            'August 7, 2026',
-            'Day Two: The Communication Barrier',
-            'One small lesson from yesterday: &quot;It looks nice... but what is it?&quot; Clarity is the priority today.',
-            'videos/Founder%20Log%20Day%20Two%20-%2002.mp4'
-         )">
-
+    <div class="logs-grid" id="logsGrid">
+      <div class="log-card" onclick="openLog('August 7, 2026', 'Day Two: The Communication Barrier', 'One small lesson from yesterday: &quot;It looks nice... but what is it?&quot; Clarity is the priority today.', 'videos/Founder%20Log%20Day%20Two%20-%2002.mp4')">
         <div class="log-date">AUG 07, 2026</div>
-
-        <div class="log-preview">
-            <div class="play-btn"></div>
-        </div>
-
+        <div class="log-preview"><div class="play-btn"></div></div>
         <h3>Day Two: Clarity Pivot</h3>
-
-        <p style="font-size: 0.9rem; color: #888;">
-            Refining the mission after a first-day vibe check.
-        </p>
-
-    </div>
-
-    <!-- Log Day 0 -->
-    <div class="log-card"
-         onclick="openLog(
-            'August 6, 2026',
-            'Day Zero: Stepping Out',
-            'Overcoming low self-esteem to document the journey of the builder.',
-            'videos/Founder%20Log%20Day%20Zero%20-%2001.mp4'
-         )">
-
+        <p style="font-size:0.9rem; color:#888;">Refining the mission after a first-day vibe check.</p>
+      </div>
+      <div class="log-card" onclick="openLog('August 6, 2026', 'Day Zero: Stepping Out', 'Overcoming low self-esteem to document the journey of the builder.', 'videos/Founder%20Log%20Day%20Zero%20-%2001.mp4')">
         <div class="log-date">AUG 06, 2026</div>
-
-        <div class="log-preview">
-            <div class="play-btn"></div>
-        </div>
-
+        <div class="log-preview"><div class="play-btn"></div></div>
         <h3>Day Zero: Launch</h3>
-
-        <p style="font-size: 0.9rem; color: #888;">
-            Owning the ND identity and launching build-in-public.
-        </p>
-
+        <p style="font-size:0.9rem; color:#888;">Owning the ND identity and launching build-in-public.</p>
+      </div>
     </div>
+  </section>
 
-</div>
-```
-
-</section>
-
-<section id="contact">
-
-```
-<div class="section-header">
-    <div>
-        <p class="log-date" style="margin-bottom: 0;">Collaborate</p>
-        <h2>Connect</h2>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-header">
+      <div><p class="log-date" style="margin-bottom:0;">Collaborate</p><h2>Connect</h2></div>
     </div>
-</div>
-
-<div class="identity-card">
-
-    <h3>Technical Partnerships</h3>
-
-    <p>
-        Seeking engineering partners for deep-tech hardware-software integration.
-    </p>
-
-    <div style="margin-top: 2rem;">
-        <a href="mailto:steventhompson.ne@gmail.com" class="btn">
-            Email Thompson Foundry
-        </a>
+    <div class="identity-card">
+      <h3>Technical Partnerships</h3>
+      <p>Seeking engineering partners for deep-tech hardware-software integration.</p>
+      <div style="margin-top: 2rem;">
+        <a href="mailto:info.thompsonfoundry@gmail.com" class="btn">Email Thompson Foundry</a>
+      </div>
     </div>
+  </section>
 
+  <footer>&copy; 2026 THOMPSON FOUNDRY INNOVATIONS | FULLERTON, CA</footer>
 </div>
-```
-
-</section>
-
-<footer>
-    &copy; 2026 THOMPSON FOUNDRY | FULLERTON, CA
-</footer>
-
-</div>
-
-<!-- Modal -->
 
 <div id="logModal">
-
-```
-<div class="modal-content">
-
+  <div class="modal-content">
     <span class="close-modal" onclick="closeLog()">&times;</span>
-
     <div id="modalDate" class="log-date"></div>
-
     <h2 id="modalTitle" style="margin-bottom: 1rem;"></h2>
-
     <div class="video-container">
-
-        <video
-            id="modalVideo"
-            controls
-            playsinline
-            preload="metadata">
-            Your browser does not support HTML5 video.
-        </video>
-
+      <video id="modalVideo" controls playsinline></video>
     </div>
-
     <p id="modalBody" style="margin-bottom: 2rem;"></p>
-
     <div style="text-align: center;">
-        <a class="btn" style="background: #333;" onclick="closeLog()">
-            Back to Feed
-        </a>
+      <a class="btn btn-ghost" onclick="closeLog()">Back to Feed</a>
     </div>
-
-</div>
-```
-
+  </div>
 </div>
 
 <script>
-
 function showSection(sectionId) {
-
-    document.querySelectorAll('section').forEach(s =>
-        s.classList.remove('active')
-    );
-
-    document.getElementById(sectionId).classList.add('active');
-
-    window.scrollTo(0,0);
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.getElementById(sectionId).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('current'));
+  window.scrollTo(0,0);
 }
-
-
 function openLog(date, title, body, videoUrl) {
-
-    document.getElementById('modalDate').innerText = date;
-
-    document.getElementById('modalTitle').innerText = title;
-
-    document.getElementById('modalBody').innerText = body;
-
-    const video = document.getElementById('modalVideo');
-
-    video.src = videoUrl;
-
-    document.getElementById('logModal').style.display = 'flex';
-
+  document.getElementById('modalDate').innerText = date;
+  document.getElementById('modalTitle').innerText = title;
+  document.getElementById('modalBody').innerText = body;
+  const vid = document.getElementById('modalVideo');
+  vid.src = videoUrl;
+  vid.load();
+  document.getElementById('logModal').style.display = 'flex';
+  vid.play().catch(() => {}); // autoplay may be blocked; controls still let them press play
 }
-
-
 function closeLog() {
-
-    const video = document.getElementById('modalVideo');
-
-    video.pause();
-
-    video.removeAttribute('src');
-
-    video.load();
-
-    document.getElementById('logModal').style.display = 'none';
-
+  const vid = document.getElementById('modalVideo');
+  vid.pause();
+  vid.removeAttribute('src');
+  vid.load();
+  document.getElementById('logModal').style.display = 'none';
 }
-
-
 window.onclick = function(event) {
-
-    if (event.target == document.getElementById('logModal')) {
-
-        closeLog();
-
-    }
-
-};
-
+  if (event.target == document.getElementById('logModal')) closeLog();
+}
 </script>
-
 </body>
 </html>

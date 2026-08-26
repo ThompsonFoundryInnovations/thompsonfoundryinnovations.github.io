@@ -440,27 +440,51 @@
 </div>
 
 <script>
-    function navigateTo(sectionId) {
+    const VALID_SECTIONS = ['home', 'consult', 'build', 'logs', 'contact', 'research'];
+
+    function navigateTo(sectionId, updateHash = true) {
+        if (!VALID_SECTIONS.includes(sectionId)) sectionId = 'home';
+
+        // Hide all sections
         const sections = document.querySelectorAll('section');
         sections.forEach(s => s.classList.remove('active'));
         
+        // Remove active class from nav links
         const navLinks = document.querySelectorAll('nav a');
         navLinks.forEach(l => l.classList.remove('active'));
         
+        // Show target section
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
             targetSection.classList.add('active');
             window.scrollTo(0, 0);
+            
+            // Update hash if requested
+            if (updateHash) {
+                window.location.hash = sectionId;
+            }
         }
         
-        const activeLink = document.getElementById('nav-' + (sectionId === 'consult' ? 'consult' : sectionId === 'build' ? 'build' : sectionId));
+        // Set active nav link
+        const activeLink = document.getElementById('nav-' + sectionId);
         if (activeLink) {
             activeLink.classList.add('active');
         }
     }
 
+    // Handle hash change for back/forward and direct links
+    window.addEventListener('hashchange', () => {
+        const hash = window.location.hash.replace('#', '');
+        navigateTo(hash, false);
+    });
+
     window.onload = function() {
-        navigateTo('home');
+        const initialHash = window.location.hash.replace('#', '');
+        if (initialHash && VALID_SECTIONS.includes(initialHash)) {
+            navigateTo(initialHash, false);
+        } else {
+            navigateTo('home', false);
+        }
     };
 </script>
 
